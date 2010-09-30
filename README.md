@@ -11,7 +11,7 @@ PHP Access/Service Layer for *http://forrst.com*
 
 Drop somewhere the Phorrst source folder in your include path (*src/library/Phorrst*) and include the following code snippet:
 
-         $service = new Phorrst\Service();
+         $service = new \Phorrst\Service();
 
 If Everything works as expected you should get a running Phorrst instance.
 
