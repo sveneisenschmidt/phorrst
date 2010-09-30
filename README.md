@@ -22,18 +22,16 @@ If Everything works as expected you should get a running Phorrst instance.
 **Get user**
 
 *// php*
-
-         $service->getUserById(3832);   // OR
-         $service->getUserByName('hahaitsfate');
+    $service->getUserById(3832);   // OR
+    $service->getUserByName('hahaitsfate');
 
 Returns null or an user object. (*instance of \Phorrst\User*)
 
 **Get posts**
 
 *//php*
-
-         $service->getPostsByUserId(3832);   // OR
-         $service->getPostsByUserName('hahaitsfate');
+    $service->getPostsByUserId(3832);   // OR
+    $service->getPostsByUserName('hahaitsfate');
 
 Returns null or an collection of data (*instance of \Phorrst\Post\Collection*), until you're not iterating over it (*with foreach or Iterator*) the data will contain only objects.
 
@@ -43,21 +41,19 @@ Returns null or an collection of data (*instance of \Phorrst\Post\Collection*), 
 Get a user and retrieve his posts and filter them by type:
 
 *// html*
-
-         $user    = $service->getUserById(3832);
-         $posts   = $user->getPosts()->filter(function($post) {
-             return ($post->getPostType() == 'code');
-         });
+    $user    = $service->getUserById(3832);
+    $posts   = $user->getPosts()->filter(function($post) {
+        return ($post->getPostType() == 'code');
+    });
 
 You can pass a closure or function name to filter the result set. Returning *true* keeps the item, *false* will remove it. Later you can iterate over the collection (*instance of \Phorrst\Post\Collection*) like over any other array.
 
 *// html*
-
-         <ul>
-         <?php foreach($posts as $post): ?>
-             <li><?php print $post->getTitle(); ?></li>
-         <?php endforeach; ?>
-         </ul>
+    <ul>
+    <?php foreach($posts as $post): ?>
+        <li><?php print $post->getTitle(); ?></li>
+    <?php endforeach; ?>
+    </ul>
 ____
 **Methods on a service instance** (*instance of \Phorrst\Service*)
 
@@ -76,13 +72,14 @@ ____
 
 Use the cache (*adapter for memcache is provided*)
 
-         require 'Phorrst/Cache/Memcache.php';
+*//php*
+    require 'Phorrst/Cache/Memcache.php';
 
-         $memcache = new \Memcache();
-         $memcache->connect('localhost');
+    $memcache = new \Memcache();
+    $memcache->connect('localhost');
 
-         $service->setCache(
-             new \Phorrst\Cache\Memcache($memcache));
+    $service->setCache(
+        new \Phorrst\Cache\Memcache($memcache));
 
 **!! It's highly encoureged to use the cache, this will significantly increase the performance !!**
 ____
@@ -100,11 +97,12 @@ ____
 
 Create a mock user to not request extra data from forrst
 
-         $mockUser = \Phorrst\User::create(array(
-             'id' => 3832, 'username' => 'hahaitsfate
-         ), $service); // pass-in a service object if you have one, when not, one is created for you
+*//php*
+    $mockUser = \Phorrst\User::create(array(
+        'id' => 3832, 'username' => 'hahaitsfate
+    ), $service); // pass-in a service object if you have one, when not, one is created for you
 
-         $posts = mockUser->getPosts();
+    $posts = mockUser->getPosts();
 
 ____
 
